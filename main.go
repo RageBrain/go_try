@@ -27,13 +27,11 @@ func main() {
       if err != nil {
           log.Fatalf("Failed to create document: %v", err)
       }
-      fmt.Printf("Created document in collection '%s' in database '%s'\n", col.Name(), db.Name())
       for _,m := range v.Matches {
         _, err := match.CreateDocument(nil, m)
         if err != nil {
             log.Fatalf("Failed to create document: %v", err)
         }
-        fmt.Printf("Created document in collection '%s' in database '%s'\n", match.Name(), db.Name())
       }
     }
   }

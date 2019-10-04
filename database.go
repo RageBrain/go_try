@@ -42,8 +42,10 @@ func databaseConnection() Database {
 func readCollection(db driver.Database, collection string) Collection {
 
   col, err := db.Collection(nil, collection)
-  if err != nil {
-      log.Fatalf("Failed to create collection: %v", err)
+  if driver.IsNotFound(err) {
+    col, err = db.CreateCollection(nil, collection, nil)
+  } else if err != nil {
+		log.Fatalf("Failed to create collection: %v", err)
   }
 
   table := Collection {

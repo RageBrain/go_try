@@ -2,7 +2,6 @@ package main
 
 import (
     "log"
-    "fmt"
 
     driver "github.com/arangodb/go-driver"
 )
@@ -16,15 +15,12 @@ type Tournament struct {
 func listOfTournaments() []string {
   var list []string
   db := databaseConnection().db
-	query := "FOR t IN tournaments RETURN t.EventId"
+	query := "FOR t IN tournaments RETURN t"
   cursor, err := db.Query(nil, query, nil)
 	if err != nil {
 		log.Fatalf("Failed to open document: %v", err)
 	}
   defer cursor.Close()
-
-  fmt.Println("dasdasdasdasdasdasd+================================")
-  fmt.Println(cursor)
 
   for {
 		var tournament Tournament
