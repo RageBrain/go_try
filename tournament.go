@@ -2,6 +2,7 @@ package main
 
 import (
     "log"
+    "fmt"
 
     driver "github.com/arangodb/go-driver"
 )
